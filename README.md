@@ -19,6 +19,21 @@ Chỉ cần chạy `npm start` là được.
 
 ## Roles
 
+### Làm sao để check role của một user?
+
+Đơn giản chỉ cần thêm roles ở bên trong command cần check là được
+
+```js
+module.exports = {
+  name: "Tên command (random)",
+  description: "Description của command (random integer number)",
+  roles: {} // Role query
+  execute(message, args) {
+    // Chạy thứ gì đó ở đây
+  },
+};
+```
+
 Có 2 cách để check role của một user.
 
 ### 1. Sử dụng `$or`
