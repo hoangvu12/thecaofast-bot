@@ -9,6 +9,9 @@
 - **BOT_TOKEN**: Token lấy ở [Discord Developer](https://discord.com/developers/applications)
 - **BOT_PREFIX**: Prefix (ví dụ: !).
 - **SECRET_KEY**: API Key lấy ở web thecaofast. Xem [Documentation](https://github.com/hoangvu12/thecaofast-api-docs)
+- **URL**: URL bạn đang host (VD: Mình host ở heroku sẽ có URL như sau:
+  https://thecaofast.herokuapp.com
+  )
 
 ## Bắt đầu chạy bot
 

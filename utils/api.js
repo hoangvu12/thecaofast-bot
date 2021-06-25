@@ -2,13 +2,7 @@ const axios = require("axios");
 
 const BASE_URL = "https://thecaofast.vercel.app/api/v1";
 
-async function createOrder({
-  cardNumber,
-  cardSerial,
-  cardType,
-  cardAmount,
-  callbackUrl,
-}) {
+async function createOrder({ cardNumber, cardSerial, cardType, cardAmount }) {
   const URL = `${BASE_URL}/orders`;
 
   const secretKey = process.env.SECRET_KEY;
@@ -21,8 +15,8 @@ async function createOrder({
     secretKey,
   };
 
-  if (callbackUrl) {
-    postData.callbackUrl = callbackUrl;
+  if (process.env.URL) {
+    postData.callbackUrl = `${process.env.URL}/orders/callback`;
   }
 
   const { data } = await axios.post(URL, postData);

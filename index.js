@@ -1,12 +1,20 @@
 const fs = require("fs");
 const Discord = require("discord.js");
+const express = require("express");
+const cors = require("cors");
+const Route = require("./routes");
+const client = require("./Client");
 require("dotenv").config();
 
+const app = express();
+const PORT = process.env.PORT || 3000;
 const TOKEN = process.env.BOT_TOKEN;
 const PREFIX = process.env.BOT_PREFIX;
 
-const client = new Discord.Client();
 client.commands = new Discord.Collection();
+
+app.use(cors());
+app.use(express.json());
 
 const commandFiles = fs
   .readdirSync("./commands")
@@ -17,16 +25,9 @@ for (const file of commandFiles) {
   client.commands.set(command.name, command);
 }
 
-// client.guilds.cache.forEach((guild) => {
-//     const USER_ID = "533193629683154944";
-
-//     const user = guild.members.fetch(USER_ID); // This return null;
-
-//     console.log(user);
-//   });
-
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
+  Route(app);
 });
 
 client.on("message", (message) => {
@@ -45,4 +46,5 @@ client.on("message", (message) => {
   }
 });
 
+app.listen(PORT, () => console.log("LISTENING ON PORT", PORT));
 client.login(TOKEN);

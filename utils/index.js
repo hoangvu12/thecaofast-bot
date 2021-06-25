@@ -36,6 +36,34 @@ function isValidCard({ cardNumber, cardSerial, cardType }) {
   return !!card.length;
 }
 
+function getCurrentTime() {
+  const timezone = new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Ho_Chi_Minh",
+  });
+  const currentDate = new Date(timezone);
+  const hour = currentDate.getHours();
+  const minute = currentDate.getMinutes();
+  const second =
+    currentDate.getSeconds() < 10
+      ? `0${currentDate.getSeconds()}`
+      : currentDate.getSeconds();
+  const date = currentDate.getDate();
+  const month = currentDate.getMonth() + 1;
+  const year = currentDate.getFullYear();
+  const formatted = `Lúc ${hour}:${minute}:${second}, ngày ${date}/${month}/${year}`;
+
+  return {
+    hour,
+    minute,
+    second,
+    date,
+    month,
+    year,
+    formatted,
+  };
+}
+
 module.exports = {
   isValidCard,
+  getCurrentTime,
 };

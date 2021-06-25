@@ -1,14 +1,9 @@
-function getGuilds(client) {
-  return client.guilds.cache;
-}
+const Client = require("../Client");
 
-function isInGuild(guildId, client) {
-  const guilds = getGuilds(client);
-
-  return guilds.filter((guild) => guildId === guild.d);
+function getChannel(name) {
+  return Client.channels.cache.find((channel) => channel.name == name);
 }
 
 module.exports = {
-  getGuilds,
-  isInGuild,
+  getChannel,
 };
