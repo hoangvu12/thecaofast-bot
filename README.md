@@ -17,6 +17,56 @@
 
 Chỉ cần chạy `npm start` là được.
 
+## Roles
+
+Có 2 cách để check role của một user.
+
+### 1. Sử dụng `$or`
+
+Khi sử dụng `$or`, hệ thống sẽ kiểm tra xem nếu user CÓ 1 trong những role id đã cho.
+
+VD:
+
+```js
+const memberRoles = ["1", "2", "3"];
+
+const query = { $or: ["1", "2"] };
+
+/**
+ * Trả về true vì memberRoles
+ * chứa 1 trong 2 role có ở query
+ */
+isValidRole(query, memberRoles);
+```
+
+### 2. Sử dụng `$and`
+
+Khi sử dụng `$and`, hệ thống sẽ kiểm tra xem nếu user CÓ TẤT CẢ những role id đã cho;
+
+```js
+const memberRoles = ["1", "2", "3"];
+
+const query = { $and: ["1", "2"] };
+
+/**
+ * Trả về true vì memberRoles
+ * có tất cả role ở query
+ */
+isValidRole(query, memberRoles);
+```
+
+```js
+const memberRoles = ["1", "3"];
+
+const query = { $and: ["1", "2"] };
+
+/**
+ * Trả về false vì memberRoles
+ * không có role "2"
+ */
+isValidRole(query, memberRoles);
+```
+
 ## Thêm lệnh
 
 Giả sử chúng ta cần tạo lệnh `!random`
@@ -31,6 +81,7 @@ Giả sử chúng ta cần tạo lệnh `!random`
 module.exports = {
   name: "Tên command (random)",
   description: "Description của command (random integer number)",
+  roles: {$or: ["", ""]} // Role ids
   execute(message, args) {
     // Chạy thứ gì đó ở đây
   },
