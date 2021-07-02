@@ -14,7 +14,7 @@ const SUPPORTED_CARDS = [
 module.exports = {
   name: "napthe",
   description: "Cho phép người dùng nạp thẻ!",
-  roles: { $or: [] }, // Đặt user id ở bên trong [] || VD: {$or: ["755106725992071341"]}
+  roles: { $or: [] }, // Đặt role id ở bên trong [] || VD: {$or: ["755106725992071341"]}
   async execute(message) {
     let channel = message.author.dmChannel;
     if (!channel) channel = await message.author.createDM();
