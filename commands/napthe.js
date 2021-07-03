@@ -16,10 +16,11 @@ module.exports = {
   description: "Cho phép người dùng nạp thẻ!",
   roles: { $or: [] }, // Đặt role id ở bên trong [] || VD: {$or: ["755106725992071341"]}
   async execute(message) {
-    let channelnow = message.channel;
-    channelnow.send('Hãy kiểm tra DMs của bạn.');
-    let channel = message.author.dmChannel;
-    if (!channel) channel = await message.author.createDM();
+    let channel = message.channel;
+    channel.reply('Hãy kiểm tra DMs của bạn.');
+    
+    let dmChannel = message.author.dmChannel;
+    if (!dmChannel) dmChannel = await message.author.createDM();
 
     channel.send(`Nhập loại thẻ (${SUPPORTED_CARDS.join(", ")})`);
 
