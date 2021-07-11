@@ -16,8 +16,7 @@ module.exports = {
   description: "Cho phép người dùng nạp thẻ!",
   roles: { $or: [] }, // Đặt role id ở bên trong [] || VD: {$or: ["755106725992071341"]}
   async execute(message) {
-    let channel = message.channel;
-    channel.reply('Hãy kiểm tra DMs của bạn.');
+    message.reply('Hãy kiểm tra DMs của bạn.');
     
     let dmChannel = message.author.dmChannel;
     if (!dmChannel) dmChannel = await message.author.createDM();
