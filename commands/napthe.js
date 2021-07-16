@@ -18,8 +18,8 @@ module.exports = {
   async execute(message) {
     message.reply('Hãy kiểm tra DMs của bạn.');
     
-    let dmChannel = message.author.dmChannel;
-    if (!dmChannel) dmChannel = await message.author.createDM();
+    let channel = message.author.dmChannel;
+    if (!channel) channel = await message.author.createDM();
 
     channel.send(`Nhập loại thẻ (${SUPPORTED_CARDS.join(", ")})`);
 
